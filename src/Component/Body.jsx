@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import Search from "./Search";
 import im from "../assets/we.jpg";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
-import BarChart from "./WeatherForecast";
+import WeatherForecast from "./WeatherForecast";
 
 const Body = () => {
   const data = useSelector((state) => state.wheatherData);
@@ -133,7 +133,7 @@ const Body = () => {
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                  <BarChart />
+                  <WeatherForecast/>
                 </TabPanel>
               </TabPanels>
             </Tabs>
