@@ -4,11 +4,11 @@ import { useSelector } from "react-redux";
 import Search from "./Search";
 import im from "../assets/we.jpg";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import BarChart from "./WeatherForecast";
 
 const Body = () => {
   const data = useSelector((state) => state.wheatherData);
-  const fc = useSelector((state) => state.forcast.list);
-  console.log(fc,"ok")
+  
 
   let date, time;
   if (data) {
@@ -133,7 +133,7 @@ const Body = () => {
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                  <p>two!</p>
+                  <BarChart />
                 </TabPanel>
               </TabPanels>
             </Tabs>
