@@ -1,4 +1,4 @@
-import { Box, Input, Text, Image } from "@chakra-ui/react";
+import { Box, Input, Text, Image, InputGroup, Button, InputRightElement } from "@chakra-ui/react";
 import React from "react";
 import { useState } from "react";
 import { getForcast, getWheather } from "../Redux/action";
@@ -17,7 +17,7 @@ const Search = () => {
   return (
     <Box
       w="90%"
-      height="70px"
+      height="90px"
       bgColor="#98BEDC"
       m="auto"
       borderRadius="14px"
@@ -30,25 +30,38 @@ const Search = () => {
         fontSize={40}
         fontWeight="bold"
         fontFamily="sans-serif"
-        mt="10px"
         ml="10px"
         color="white"
       >
+        <Text
+          fontSize={42}
+          bgGradient="linear(to-l, #7928CA, #FF0080)"
+          bgClip="text"
+          as="span"
+        >
+          W
+        </Text>
         <Text fontSize={42} color="#3B185F" as="span">
-          Weather
+          eather
         </Text>
         <Text as="span">info</Text>
       </Box>
-      <Box p="10px" mt="10px" mr="90px" border="red solid 1px">
-        <Input
-          type="text"
-          onChange={(e) => setData(e.target.value)}
-          h="30px"
-          w="350px"
-          borderRadius="5px"
-          borderStyle="hidden"
-        />
-        <Input type="submit" onClick={handleSubmit} ml="20px" />
+      <Box p="10px" mr="90px" >
+        <InputGroup size="md">
+          <Input
+            w="400px"
+            onChange={(e)=>setData(e.target.value)}
+            pr="4.5rem"
+            type={ "text" }
+            placeholder="Search for city..."
+            bgColor="white"
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleSubmit}>
+              {"Search"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
       </Box>
       <Box>
         <Image

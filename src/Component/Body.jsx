@@ -1,15 +1,25 @@
-import { Box, Image, Text, VStack } from '@chakra-ui/react'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import Search from './Search'
+import { Box, Image, Text } from "@chakra-ui/react";
+import React from "react";
+import { useSelector } from "react-redux";
+import Search from "./Search";
 import im from "../assets/we.jpg";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
+import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 
 const Body = () => {
   const data = useSelector((state) => state.wheatherData);
-  
-  console.log("ok", data);
-  
+  const fc = useSelector((state) => state.forcast.list);
+  console.log(fc,"ok")
+
+  let date, time;
+  if (data) {
+    // const sunset = data.sys.sunset;
+    let unix = data.dt;
+    // sunr = data.sys.sunrise;
+    date = new Date(unix * 1000).toDateString();
+    time = new Date(unix * 1000).toLocaleTimeString();
+    // SR = new Date(sunrise * 1000).toLocaleTimeString();
+    // SS = new Date(sunset * 1000).toLocaleTimeString();
+  }
   return (
     <Box>
       <Search />
@@ -38,32 +48,88 @@ const Body = () => {
         )}
         {Object.keys(data).length > 0 && (
           <Box border="solid red 1px" w="100%">
-            <Tabs variant="solid-rounded" colorScheme="green">
-              <TabList  m="auto"  justifyContent="center">
-                <Tab p="20px">Tab 1</Tab>
-                <Tab>Tab 2</Tab>
+            <Tabs variant="solid-rounded" colorScheme="twitter">
+              <TabList m="auto" justifyContent="center">
+                <Tab p="12px 25px" borderRadius="12px">
+                  Current Stats
+                </Tab>
+                <Tab p="12px 25px" borderRadius="12px">
+                  5 days Forecast
+                </Tab>
               </TabList>
               <TabPanels>
                 <TabPanel>
-                  <p>one!</p>
                   <Box
-                    w="500px"
+                    m="auto"
+                    w="70%"
                     h="300px"
                     border="solid red 1px"
                     bgColor="#86A3B8"
+                    display={"flex"}
                   >
-                    <VStack>
+                    <Box w="300px">
                       <Box>
-                        <Text as="span">{data.name}</Text>
-                        <Text as="span">{data.weather[0].main}</Text>
-                        <Text>{data.weather[0].description}</Text>
+                        <Text
+                          border="solid red 1px"
+                          fontSize={"50px"}
+                          fontWeight="bold"
+                          p="10px"
+                        >
+                          {data.name}
+                        </Text>
                       </Box>
                       <Box>
-                        <Text as="span">{data.main.temp}</Text>
-                        <Text as="span">{data.main.temp_min}</Text>
-                        <Text as="span">{data.main.temp_max}</Text>
+                        <Text as="span">current forecast : </Text>
+                        <Text as="span" fontSize={"25px"} fontWeight="bold">
+                          {data.weather[0].main}
+                        </Text>
                       </Box>
-                    </VStack>
+                      <Box>
+                        <Text as="span">weather forecast for today is </Text>
+                        <Text as="span">{data.weather[0].description}</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Cloudiness : </Text>
+                        <Text as="span">{data.clouds.all}%</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Date : </Text>
+                        <Text as="span">{date}</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Time : </Text>
+                        <Text as="span">{time}</Text>
+                      </Box>
+                    </Box>
+                    <Box w="300px">
+                      <Box fontSize={"25px"} fontWeight="bold">
+                        Todays Temperature
+                      </Box>
+                      <Box>
+                        <Text as="span">Avrage Temp. : </Text>
+                        <Text as="span">{data.main.temp}°C</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Minimum Temp. : </Text>
+                        <Text as="span">{data.main.temp_min}°C</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Maximun Temp. : </Text>
+                        <Text as="span">{data.main.temp_max}°C</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">Humidity : </Text>
+                        <Text as="span">{data.main.humidity} %</Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">SunRise : </Text>
+                        <Text as="span">{} </Text>
+                      </Box>
+                      <Box>
+                        <Text as="span">SunSet : </Text>
+                        <Text as="span">{} </Text>
+                      </Box>
+                    </Box>
                   </Box>
                 </TabPanel>
                 <TabPanel>
@@ -76,6 +142,6 @@ const Body = () => {
       </Box>
     </Box>
   );
-}
+};
 
-export default Body
+export default Body;
