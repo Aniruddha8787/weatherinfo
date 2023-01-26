@@ -1,38 +1,61 @@
-import { useState } from "react";
-import { Bar } from "react-chartjs-2";
+import React from "react";
 import { useSelector } from "react-redux";
+import {  Chart } from "react-chartjs-2";
+import "chart.js/auto";
 
-const WeatherForecast = () => {
+const ForecastChart = () => {
   const forecastData = useSelector((state) => state.forcast.list);
-  const [chartData, setChartData] = useState({
-    labels: forecastData.map((item) => item.dt_txt),
+  const labels = [];
+  const tempData = [];
+  if (!forecastData) {
+    return null;
+  }
+  forecastData.forEach((forecast) => {
+    labels.push(forecast.dt_txt);
+    tempData.push(forecast.main.temp);
+  });
+  const colorss = [
+    "rgba(255, 99, 132, 0.4)",
+    "rgba(173,231,146, 0.4)",
+    "rgba(154,208,245, 0.4)",
+    "rgba(255,234,33, 0.4)",
+    "rgba(20,1,91, 0.4)",
+  ];
+  const bb = [
+    "rgba(255, 99, 132, 1)",
+    "rgba(173,231,146, 1)",
+    "rgba(154,208,245, 1)",
+    "rgba(255,234,33, 1)",
+    "rgba(20,1,91, 1)",
+  ];
+
+  const chartData = {
+    labels,
     datasets: [
       {
-        label: "Temperature (°C)",
-        data: forecastData.map((item) => item.main.temp),
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        label: "Temperature (Celsius)",
+        backgroundColor: colorss,
+        borderColor: bb,
         borderWidth: 1,
+        hoverBackgroundColor: "rgba(255, 99, 132, 0.4)",
+        hoverBorderColor: "rgba(255, 99, 132, 1)",
+        data: tempData,
       },
     ],
-  });
-  const [chartOptions, setChartOptions] = useState({
-    scales: {
-      y: {
-        beginAtZero: true,
-        min: 0,
-        max: 40,
-      },
-    },
-  });
-    console.log("chartData", chartData);
+  };
   return (
     <div>
       {Object.keys(chartData).length > 0 && (
-        <Bar data={chartData} options={chartOptions} />
+        <Chart
+          type="bar"
+          data={chartData}
+          width={100}
+          height={50}
+          options={{ maintainAspectRatio: false }}
+        />
       )}
     </div>
   );
 };
 
-export default WeatherForecast;
+export default ForecastChart;

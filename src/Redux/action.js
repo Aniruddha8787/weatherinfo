@@ -13,7 +13,7 @@ const getWheather = (value) => (dispatch) => {
 
   return axios
     .get(
-      `https://api.openweathermap.org/data/2.5/weather?q=${value}&units=metric&appid=d4e579ab675b8ccb867f00a43babdb06`
+      `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=d4e579ab675b8ccb867f00a43babdb06&units=metric`
     )
     .then((res) => {
       return dispatch({
@@ -24,6 +24,7 @@ const getWheather = (value) => (dispatch) => {
     .catch((err) => {
       dispatch({ type: GET_WHEATHER_DATA_FAILURE });
       console.log(err);
+      alert(err.response.data.message);
     });
 };
 
@@ -33,7 +34,7 @@ const getForcast = (value) => (dispatch) => {
 
   return axios
     .get(
-      `https://api.openweathermap.org/data/2.5/forecast/?q=${value}&cnt=5&appid=d4e579ab675b8ccb867f00a43babdb06`
+      `https://api.openweathermap.org/data/2.5/forecast/?q=${value}&cnt=5&appid=d4e579ab675b8ccb867f00a43babdb06&units=metric`
     )
     .then((res) => {
       return dispatch({

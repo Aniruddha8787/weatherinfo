@@ -5,20 +5,20 @@ import Search from "./Search";
 import im from "../assets/we.jpg";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import WeatherForecast from "./WeatherForecast";
+import HumidityChart from "./HumidityChart";
+import PressureChart from "./PressureChart";
+import CloudinessChart from "./CloudinessChart";
 
 const Body = () => {
   const data = useSelector((state) => state.wheatherData);
   
-
-  let date, time;
-  if (data) {
-    // const sunset = data.sys.sunset;
-    let unix = data.dt;
-    // sunr = data.sys.sunrise;
-    date = new Date(unix * 1000).toDateString();
-    time = new Date(unix * 1000).toLocaleTimeString();
-    // SR = new Date(sunrise * 1000).toLocaleTimeString();
-    // SS = new Date(sunset * 1000).toLocaleTimeString();
+  let date, time,sunset,sunrise;
+  if (data && data.sys) {
+    
+    date = new Date(data.dt * 1000).toDateString();
+    time = new Date(data.dt * 1000).toLocaleTimeString();
+    sunrise = new Date(data.sys.sunrise * 1000).toLocaleTimeString();
+    sunset = new Date(data.sys.sunset * 1000).toLocaleTimeString();
   }
   return (
     <Box>
@@ -123,17 +123,40 @@ const Body = () => {
                       </Box>
                       <Box>
                         <Text as="span">SunRise : </Text>
-                        <Text as="span">{} </Text>
+                        <Text as="span">{sunrise} </Text>
                       </Box>
                       <Box>
                         <Text as="span">SunSet : </Text>
-                        <Text as="span">{} </Text>
+                        <Text as="span">{sunset} </Text>
                       </Box>
                     </Box>
                   </Box>
                 </TabPanel>
                 <TabPanel>
-                  <WeatherForecast/>
+                  <Box border="solid 1px red">
+                    <Tabs variant="soft-rounded" colorScheme="green">
+                      <TabList>
+                        <Tab>Tab 1</Tab>
+                        <Tab>Tab 2</Tab>
+                        <Tab>Tab 3</Tab>
+                        <Tab>Tab 4</Tab>
+                      </TabList>
+                      <TabPanels>
+                        <TabPanel>
+                          <WeatherForecast />
+                        </TabPanel>
+                        <TabPanel>
+                          <HumidityChart />
+                        </TabPanel>
+                        <TabPanel>
+                          <PressureChart />
+                        </TabPanel>
+                        <TabPanel>
+                          <CloudinessChart />
+                        </TabPanel>
+                      </TabPanels>
+                    </Tabs>
+                  </Box>
                 </TabPanel>
               </TabPanels>
             </Tabs>
