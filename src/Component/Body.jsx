@@ -40,7 +40,13 @@ const Body = () => {
           >
             <Box w="500px" alignItems="center">
               <Text mt="90px" fontSize={50} fontWeight={700} color="red.500">
-                Please Enter your city name
+                Enter City Name
+              </Text>
+              <Text fontSize={50} fontWeight={700}>
+                OR
+              </Text>
+              <Text  fontSize={50} fontWeight={700} color="red.500">
+                Give Location Access
               </Text>
             </Box>
             <Box w="500px" h="400px">
