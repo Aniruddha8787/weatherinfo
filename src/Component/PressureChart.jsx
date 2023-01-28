@@ -24,12 +24,12 @@ const PressureChart = () => {
       {
         label: "Sea Level Pressure",
         data: seaLevelData,
-        backgroundColor: "#3e95cd",
+        backgroundColor: "#B9F3FC",
       },
       {
         label: "Ground Level Pressure",
         data: groundLevelData,
-        backgroundColor: "#8e5ea2",
+        backgroundColor: "#FFB26B",
       },
     ],
   };
@@ -37,7 +37,10 @@ const PressureChart = () => {
   const options = {
     scales: {
       y: {
-        beginAtZero: true,
+        ticks: { color: "white", beginAtZero: true },
+      },
+      x: {
+        ticks: { color: "white"},
       },
     },
   };

@@ -23,8 +23,8 @@ const CloudinessChart = () => {
         label: "Cloud Coverage (%)",
         fill: false,
         lineTension: 0.1,
-        backgroundColor: "rgba(75,192,192,0.4)",
-        borderColor: "rgba(75,192,192,1)",
+        backgroundColor: "rgba(255,234,33,0.4)",
+        borderColor: "rgba(255,234,33,1)",
         borderCapStyle: "butt",
         borderDash: [],
         borderDashOffset: 0.0,
@@ -56,9 +56,13 @@ const CloudinessChart = () => {
               min: 0,
               max: 100,
               ticks: {
+                color: "white",
                 suggestedMin: 0,
                 suggestedMax: 100,
               },
+            },
+            x: {
+              ticks: { color: "white" },
             },
           },
         }}

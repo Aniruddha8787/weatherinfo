@@ -15,11 +15,11 @@ const ForecastChart = () => {
     tempData.push(forecast.main.temp);
   });
   const colorss = [
-    "rgba(255, 99, 132, 0.4)",
-    "rgba(173,231,146, 0.4)",
-    "rgba(154,208,245, 0.4)",
-    "rgba(255,234,33, 0.4)",
-    "rgba(20,1,91, 0.4)",
+    "rgba(255, 99, 132, 0.7)",
+    "rgba(173,231,146, 0.7)",
+    "rgba(154,208,245, 0.7)",
+    "rgba(255,234,33, 0.7)",
+    "rgba(20,1,91, 0.7)",
   ];
   const bb = [
     "rgba(255, 99, 132, 1)",
@@ -44,14 +44,23 @@ const ForecastChart = () => {
     ],
   };
   return (
-    <div>
+    <div style={{ color: "white" }}>
       {Object.keys(chartData).length > 0 && (
         <Chart
           type="bar"
           data={chartData}
           width={100}
           height={50}
-          options={{ maintainAspectRatio: false }}
+          options={
+            {scales: {
+              y: {
+                ticks: { color: "white", beginAtZero: true },
+              },
+              x: {
+                ticks: { color: "white" },
+              },
+            },}
+          }
         />
       )}
     </div>
