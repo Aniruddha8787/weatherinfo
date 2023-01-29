@@ -30,6 +30,3 @@ This is a weather app built using React.js. It utilizes the OpenWeatherMap API t
 - Create a new branch for your feature
 - Make the necessary changes and commit
 - Raise a pull request
-
-## License
-- The project is licensed under the MIT License.
