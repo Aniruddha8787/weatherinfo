@@ -23,7 +23,7 @@ This is a weather app built using React.js. It utilizes the OpenWeatherMap API t
 - Visit `http://localhost:3000` to view the app
 
 ## Deployment
-- The app is deployed on Vercel (or any other platform)
+- The app is deployed on Vercel
 
 ## Contribution
 - Fork the repository
